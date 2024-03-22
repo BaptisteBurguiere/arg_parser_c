@@ -33,6 +33,38 @@ Add the header in your file:
 
 ## Usage
 
+Types:
+
+```c
+// Return types of some functions to manage errors
+typedef enum return_type
+{
+    OK,
+    OK_SKIP,
+    ERROR,
+    INVALID_ARGS,
+    INVALID_FLAG,
+    INVALID_SHORT_NAME,
+    INVALID_LONG_NAME,
+    INVALID_VALUE,
+    MULTIPLE_DEFINITIONS,
+    INVALID_USE,
+}   return_type;
+
+// All types for defining a flag
+// Note: If a type you need is not defined, use ARG_TYPE_STR to get the raw
+//       input and manage it later
+typedef enum arg_type
+{
+    ARG_TYPE_BOOL,
+    ARG_TYPE_INT,
+    ARG_TYPE_UINT,
+    ARG_TYPE_FLOAT,
+    ARG_TYPE_DOUBLE,
+    ARG_TYPE_STR
+}   arg_type;
+```
+
 Functions description:
 
 ```c

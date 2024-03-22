@@ -10,6 +10,7 @@
 # include <stdio.h>
 # include <ctype.h>
 
+// Return types of some functions to manage errors
 typedef enum return_type
 {
     OK,
@@ -24,6 +25,9 @@ typedef enum return_type
     INVALID_USE,
 }   return_type;
 
+// All types for defining a flag
+// Note: If a type you need is not defined, use ARG_TYPE_STR to get the raw
+//       input and manage it later
 typedef enum arg_type
 {
     ARG_TYPE_BOOL,
