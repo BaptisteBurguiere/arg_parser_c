@@ -1,21 +1,27 @@
-NAME=a.out
-CC=gcc
-FLAGS=-Wall -Wextra -Werror -g
-SRCS=$(wildcard *.c)
-OBJS=$(patsubst %.c,%.o,$(SRCS))
+NAME = libarg_parser.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-${NAME} : ${OBJS}
-	$(CC) $(OBJS) -o $(NAME)
+CFILES = arg_parser.c \
+		arg_parser_utils.c \
+		arg_parser_checks.c
+
+OFILES = $(CFILES:.c=.o)
+
+$(NAME): $(OFILES)
+	ar rcs $(NAME) $(OFILES)
+
+all: $(NAME) clean
 
 .c.o :
-	$(CC) ${FLAGS} -c $< -o ${<:.c=.o}
+	$(CC) ${CFLAGS} -c $< -o ${<:.c=.o}
 
-all : ${NAME}
+clean:
+	rm -f $(OFILES)
 
-clean :
-	rm -rf ${OBJS}
+fclean: clean
+	rm -f $(NAME)
 
-fclean : clean
-	rm -rf ${NAME}
+re: fclean $(NAME)
 
-re : fclean all
+.PHONY:  all clean fclean re

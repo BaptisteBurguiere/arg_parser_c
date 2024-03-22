@@ -63,6 +63,58 @@ return_type parse_args(args *args, int argc, char **argv)
     return OK;
 }
 
+void *get_arg_value(args *args, char short_name)
+{
+    if (!args)
+    {
+        fprintf(stderr, "get_arg_value error: args is NULL\n");
+        return NULL;
+    }
+    for (size_t i = 0; i < args->nb_args; i++)
+    {
+        if (args->args[i].short_name == short_name)
+        {
+            if (!args->args[i].is_used)
+                return NULL;
+            
+            switch (args->args[i].type)
+            {
+                case ARG_TYPE_BOOL:;
+                    bool *retb = calloc(1, sizeof(bool));
+                    *retb = true;
+                    return retb;
+                
+                case ARG_TYPE_INT:;
+                    int *reti = calloc(1,sizeof(int));
+                    *reti = args->args[i].value.i;
+                    return reti;
+
+                case ARG_TYPE_UINT:;
+                    unsigned int *retui = calloc(1,sizeof(unsigned int));
+                    *retui = args->args[i].value.ui;
+                    return retui;
+
+                case ARG_TYPE_FLOAT:;
+                    float *retf = calloc(1,sizeof(float));
+                    *retf = args->args[i].value.f;
+                    return retf;
+
+                case ARG_TYPE_DOUBLE:;
+                    double *retd = calloc(1,sizeof(double));
+                    *retd = args->args[i].value.d;
+                    return retd;
+
+                case ARG_TYPE_STR:;
+                    char *rets = strdup(args->args[i].value.str);
+                    return rets;
+            }
+        }
+    }
+    
+    fprintf(stderr, "get_arg_value error: flag '-%c' undefined", short_name);
+    return NULL;
+}
+
 void destroy_args(args args)
 {
     for (size_t i = 0; i < args.nb_args; i++)

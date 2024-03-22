@@ -68,6 +68,10 @@ return_type add_arg(args *args, char short_name, char *long_name, arg_type type)
 // Start parsing the programm input to fill args with flags and inputs
 return_type parse_args(args *args, int argc, char **argv);
 
+// Returns a pointer to a copy of the value. NULL if the flag is not used.
+// Cast the result to the correct type to use.
+void        *get_arg_value(args *args, char short_name);
+
 // Free args
 void        destroy_args(args args);
 
