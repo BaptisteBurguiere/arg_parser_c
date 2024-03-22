@@ -53,7 +53,7 @@ static return_type fill_flag_long_name_value(args *args, int argc, char **argv, 
                     char *endptr;
 
                     res = strtoul(argv[pos + 1], &endptr, 10);
-                    if (endptr)
+                    if (*endptr)
                     {
                         fprintf(stderr, "parse_args error: invalid value for flag '%s': expected unsigned int, got '%s'\n", argv[pos], argv[pos + 1]);
                         return INVALID_VALUE;
@@ -70,7 +70,7 @@ static return_type fill_flag_long_name_value(args *args, int argc, char **argv, 
                     }
 
                     res = strtof(argv[pos + 1], &endptr);
-                    if (endptr)
+                    if (*endptr)
                     {
                         fprintf(stderr, "parse_args error: invalid value for flag '%s': expected float, got '%s'\n", argv[pos], argv[pos + 1]);
                         return INVALID_VALUE;
@@ -164,7 +164,7 @@ static return_type fill_flag_short_name_value(args *args, int argc, char **argv,
                     char *endptr;
 
                     res = strtoul(argv[pos + 1], &endptr, 10);
-                    if (endptr)
+                    if (*endptr)
                     {
                         fprintf(stderr, "parse_args error: invalid value for flag '-%c': expected unsigned int, got '%s'\n", flag, argv[pos + 1]);
                         return INVALID_VALUE;
@@ -186,7 +186,7 @@ static return_type fill_flag_short_name_value(args *args, int argc, char **argv,
                     }
 
                     res = strtof(argv[pos + 1], &endptr);
-                    if (endptr)
+                    if (*endptr)
                     {
                         fprintf(stderr, "parse_args error: invalid value for flag '-%c': expected float, got '%s'\n", flag, argv[pos + 1]);
                         return INVALID_VALUE;

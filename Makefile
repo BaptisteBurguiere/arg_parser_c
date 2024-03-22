@@ -1,6 +1,6 @@
 NAME = libarg_parser.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 CFILES = arg_parser.c \
 		arg_parser_utils.c \
@@ -14,14 +14,18 @@ $(NAME): $(OFILES)
 all: $(NAME) clean
 
 .c.o :
-	$(CC) ${CFLAGS} -c $< -o ${<:.c=.o}
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 clean:
 	rm -f $(OFILES)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) debug debug.o
 
 re: fclean $(NAME)
 
-.PHONY:  all clean fclean re
+debug: fclean $(OFILES)
+	$(CC) $(CFLAGS) -c debug.c -o debug.o
+	$(CC) $(CFLAGS) $(OFILES) debug.o -o debug
+
+.PHONY:  all clean fclean re debug
