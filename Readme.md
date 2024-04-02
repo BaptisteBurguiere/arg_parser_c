@@ -22,7 +22,7 @@ make
 Add flags to the compilation:
 
 ```bash
-<CC> -Iarg_parser_c -Larg_parser_c -larg_parser <SRCS> -o <OUTPUT_FILE>
+<CC> -Iarg_parser_c -Larg_parser_c <SRCS> -o <OUTPUT_FILE> -larg_parser
 ```
 
 Add the header in your file:
