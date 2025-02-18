@@ -14,7 +14,7 @@ static return_type fill_flag_long_name_value(args *args, int argc, char **argv, 
 {
     for (size_t i = 0; i < args->nb_args; i++)
     {
-        if (strcmp(args->args[i].long_name, long_name) == 0)
+        if (args->args[i].long_name && strcmp(args->args[i].long_name, long_name) == 0)
         {
             if (args->args[i].is_used && args->args[i].type != ARG_TYPE_BOOL)
             {
