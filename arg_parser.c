@@ -24,7 +24,7 @@ return_type add_arg(args *args, char short_name, char *long_name, arg_type type)
     if (long_name)
         new_arg.long_name = strdup(long_name);
     else
-        long_name = NULL;
+        new_arg.long_name = NULL;
     new_arg.type = type;
     new_arg.is_used = false;
 

@@ -72,7 +72,7 @@ return_type check_arg(args *args, char short_name, char *long_name)
             fprintf(stderr, "add_arg error: multiple definitions for short_name '-%c'\n", short_name);
             return MULTIPLE_DEFINITIONS;
         }
-        else if (strcmp(args->args[i].long_name, long_name) == 0)
+        else if (long_name && strcmp(args->args[i].long_name, long_name) == 0)
         {
             fprintf(stderr, "add_arg error: multiple definitions for long_name '--%s'\n", long_name);
             return MULTIPLE_DEFINITIONS;
